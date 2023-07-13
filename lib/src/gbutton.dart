@@ -20,7 +20,7 @@ class GButton extends StatefulWidget {
   final double? iconSize;
   final Function? onPressed;
   final String text;
-  final IconData icon;
+  final String iconPath;
   final Color? backgroundColor;
   final Duration? duration;
   final Curve? curve;
@@ -39,7 +39,7 @@ class GButton extends StatefulWidget {
     this.active,
     this.haptic,
     this.backgroundColor,
-    required this.icon,
+    required this.iconPath,
     this.iconColor,
     this.rippleColor,
     this.hoverColor,
@@ -101,7 +101,7 @@ class _GButtonState extends State<GButton> {
         leading: widget.leading,
         iconActiveColor: widget.iconActiveColor,
         iconColor: widget.iconColor,
-        icon: widget.icon,
+        iconPath: widget.iconPath,
         text: Text(
           widget.text,
           style: widget.textStyle ??
