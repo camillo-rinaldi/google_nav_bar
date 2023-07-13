@@ -2,11 +2,12 @@ import 'dart:math' show pow;
 
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:flutter_svg/svg.dart'; // Added to support SVG files.
 
 class Button extends StatefulWidget {
   const Button({
     Key? key,
-    this.icon,
+    this.iconPath, // Changed from IconData to String representing the path to the SVG file.
     this.iconSize,
     this.leading,
     this.iconActiveColor,
@@ -32,7 +33,7 @@ class Button extends StatefulWidget {
     this.textSize,
   }) : super(key: key);
 
-  final IconData? icon;
+  final String? iconPath; // Changed from IconData to String representing the path to the SVG file.
   final double? iconSize;
   final Text? text;
   final Widget? leading;
@@ -101,8 +102,12 @@ class _ButtonState extends State<Button> with TickerProviderStateMixin {
       expandController.forward();
 
     Widget icon = widget.leading ??
-        Icon(widget.icon,
-            color: _colorTweenAnimation.value, size: widget.iconSize);
+        SvgPicture.asset( // Use SvgPicture.asset to load SVG files.
+          widget.iconPath!,
+          color: _colorTweenAnimation.value,
+          width: widget.iconSize,
+          height: widget.iconSize,
+        );
 
     return Material(
       type: MaterialType.transparency,
